@@ -1,0 +1,1 @@
+const params = process.argv;
