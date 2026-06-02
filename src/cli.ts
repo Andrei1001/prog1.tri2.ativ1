@@ -72,6 +72,29 @@ if (command === "remove") {
     process.exit(0)
 }
 
+if (command === "update") {
+    const indexStr = params[3]
+    if (!indexStr) {
+        console.error("Índice do item é obrigatório")
+        process.exit(1)
+    }
+    const index = parseInt(indexStr)
+    if (isNaN(index)) {
+        console.error("Índice inválido, precisa ser um número inteiro")
+        process.exit(1)
+    }
+    const valor = params[4]
+    if (!valor) {
+        console.log("Erro, coloque um número");
+        process.exit(1)
+    }
+
+    await todolist.updItem(new Item(valor), index)
+    console.log("Item ${valor} alterado com sucesso");
+
+
+}
+
 // ------------------------------------------------------------------------------
 // --- Fallback para comandos não reconhecidos
 // ------------------------------------------------------------------------------
@@ -83,4 +106,6 @@ console.log(`Comandos disponíveis:
 - add <item>: Adiciona um item à lista
 - remove <index>: Remove um item da lista por indice
 - list: Lista os itens atuais
+- update <index> <novo item>: Atualizar um item
 `)
+

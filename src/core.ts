@@ -61,6 +61,13 @@ class TodoList {
     await this.saveListToDisk()
   }
 
+    async updItem (item: Item, index: number){
+    const items = await this.items
+    items[index] = item;
+    await this.saveListToDisk()
+  }
+
+
   /**
    * Retorna a cópia da lista de itens
    */
